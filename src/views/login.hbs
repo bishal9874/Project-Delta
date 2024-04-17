@@ -1,16 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Document</title>  
     <link rel="stylesheet" href="login.css">
 </head>
+
 <body>
-    <center>
+        {{!-- <center>
         <h1 class="log">Login</h1>
-        <a href="./register">create your account</a>
-    </center>
-   
+        <d <a href="./register">create your account</a>
+
+    </center> --}}
+    <section class="main">
+        
+        
+        <div class="left-div">
+                <img class="logomain" src="logo2.png" alt="logo" srcset="" width="120px">
+
+            <h1>Login to Your Account</h1>
+            <h5>Login Using Social Accounts</h5>
+            <div class="left_icons">
+                <img src="google.png"  alt="google" srcset="" width="30px">
+                <img src="twitter.png" alt="google" srcset="" width="30px">
+                <img src="facebook.png" alt="google" srcset="" width="30px">
+            </div>
+            <div class="lines">
+                <hr>
+                <h4>OR</h4>
+                <hr>
+            </div>
+            <div>
+                <form id="inputs" action="" method="post">
+                    <input id="email" type="email" name="email" placeholder="Email" required>
+                    <input id="pass" type="password" name="password" placeholder="Password" required>
+                    <button class="signin-button">Sign in</button>
+                </form>
+            </div>
+
+        </div>
+        <div class="right-div">
+            <div id="signup-text">
+                <h1>New Here ?</h1>
+                <p>Sign up and have fun with Quiz</p>
+                <button type="button" class="signup-button" onclick="register">Sign up</button>
+            </div>
+                
+
+        </div>
+    </section>
 </body>
+
 </html>
