@@ -1,23 +1,30 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
     margin: 0;
     padding: 0;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
-.log{
+
+.log {
     color: red;
 }
-.main{
+
+.main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.right-div{
-    background-image: linear-gradient(rgb(6, 124, 150),white);
-    height: 500px;
-    width: 350px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+
+.right-div {
+    background-image: linear-gradient(rgb(6, 124, 150), white);
+    height: 400px;
+    width: 550px;
     padding-top: 15%;
     padding-left: 3%;
-    
+
 }
 
 .signup-button {
@@ -28,16 +35,18 @@ body{
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    font-family: "Times New Roman", Times, serif;
+
 }
-#signup-text{
-    padding-left:20%;
-   
+
+#signup-text {
+    padding-left: 20%;
+
 }
+
 .left-div {
     height: 500px;
     width: 700px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+  
     padding-top: 2%;
     padding-left: 2%;
     display: flex;
@@ -45,6 +54,7 @@ body{
     align-items: center;
     justify-content: center;
 }
+
 .left_icons {
     display: flex;
     gap: 1rem;
@@ -52,13 +62,15 @@ body{
     align-items: center;
     justify-content: center;
 }
-.lines{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
+
+.lines {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
-#inputs{
+
+#inputs {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,26 +80,25 @@ body{
 
 }
 
-.signin-button{
-    background-color:rgb(6, 124, 150);
+.signin-button {
+    background-color: rgb(6, 124, 150);
     color: white;
     padding: 5px 15px 5px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    font-family: "Times New Roman", Times, serif;
     margin: 3px 0px;
 }
 
-#email{
+#email {
     width: 100%;
-    padding:5px 10px 5px 10px; 
+    padding: 5px 10px 5px 10px;
     box-sizing: border-box;
-}  
-#pass{
-    width: 100%;
-    padding:5px 10px 5px 10px; 
-    box-sizing: border-box;
-}  
+}
 
+#pass {
+    width: 100%;
+    padding: 5px 10px 5px 10px;
+    box-sizing: border-box;
+}
