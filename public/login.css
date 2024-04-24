@@ -19,8 +19,8 @@ body {
 }
 
 .right-div {
-    background-image: linear-gradient(rgb(6, 124, 150), white);
-    height: 400px;
+    background-image: linear-gradient(dodgerblue,pink,white);
+    height: 760px;
     width: 550px;
     padding-top: 15%;
     padding-left: 3%;
@@ -46,7 +46,6 @@ body {
 .left-div {
     height: 500px;
     width: 700px;
-  
     padding-top: 2%;
     padding-left: 2%;
     display: flex;
@@ -57,10 +56,11 @@ body {
 
 .left_icons {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     width: 100%;
     align-items: center;
     justify-content: center;
+    
 }
 
 .lines {
@@ -68,6 +68,7 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    gap: 0.5rem;
 }
 
 #inputs {

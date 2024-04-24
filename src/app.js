@@ -4,6 +4,16 @@ const port = process.env.PORT || 3000;
 require("./db/mongo");
 const path = require("path");
 const UserCollection = require("./db/mongo");
+const session=require("express-session")
+
+
+app.use(session({
+    secret:"apple12345",
+    resave:false,
+    saveUninitialized:false,
+    cookie:{secure:false}
+}))
+
 
 // Set up paths and view engine
 const static_path = path.join(__dirname, "../public");
@@ -37,6 +47,7 @@ app.get("/admin", (req, res) => {
     res.render("adminlogin");
 });
 
+
 app.post("/userCreation", async (req, res) => {
     const { name, email, password, dob, gender } = req.body;
     let userData;
@@ -54,27 +65,24 @@ app.post("/userCreation", async (req, res) => {
                 dob,
                 gender
             });
-            
-           
         }
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Internal Server Error');
     }
-     // Render home page with user data
-     res.status(201).render("home", { userData });
+    // Render home page with user data
+    res.status(201).render("home", { userData });
 });
 
 
 app.post('/SignInData', async (req, res) => {
     const { email, password } = req.body;
     try {
-       
         const user = await UserCollection.findOne({ email: email });
         if (user) {
-          
+
             if (user.password === password) {
-                
+
                 res.status(200).render("home", { userData: user });
             } else {
                 res.status(401).redirect('/login?message=incorrectPass');
@@ -88,4 +96,24 @@ app.post('/SignInData', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+function sessionval(req,res,next){
+    if (req.session.userId){
+        next();
+    }
+    else{
+        res.send("UNAUTHORISED ACCESS !");
+    }
+}
+app.get("/logout",(req,res)=>{
+    req.session.destroy(err=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            res.render("login")
+        }
+    })
+})
+
+
 
