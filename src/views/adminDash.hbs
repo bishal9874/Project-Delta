@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        .user-card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .user-card p {
+            margin: 5px 0;
+        }
+        .btn {
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    {{#each AllUserData}}
+        <div class="user-card">
+            <p><strong>Name:</strong> {{this.name}}</p>
+            <p><strong>Email:</strong> {{this.email}}</p>
+            <p><strong>Date of Birth:</strong> {{this.dob}}</p>
+            <p><strong>Gender:</strong> {{this.gender}}</p>
+            <p><strong>Password:</strong> {{this.password}}</p>
+            <!-- Update Form -->
+            <form action="/update/{{this._id}}" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{this.name}}">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{this.email}}">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" value="{{this.dob}}">
+                <label for="gender">Gender:</label>
+                <input type="text" id="gender" name="gender" value="{{this.gender}}">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" value="{{this.password}}">
+                <button type="submit" class="btn">Update</button>
+            </form>
+            <!-- Delete Button -->
+            <form action="/delete/{{this._id}}" method="POST">
+                <button type="submit" class="btn">Delete</button>
+            </form>
+        </div>
+    {{/each}}
+</body>
+</html>

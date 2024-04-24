@@ -40,10 +40,19 @@
                     <button class="btn btn-primary btn-block signin-button" type="submit">Sign in</button>
                 </form>
             </div>
-            <div class="alert alert-danger alert-dismissible fade show" id="userExistsMessage" style="display:none;"
+            <br>
+            <br>
+            <div class="alert alert-danger alert-dismissible fade show" id="incorrectPass" style="display:none;"
                 role="alert">
-                User with this email already exists!
+                incorrect Password!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="dismissAlert()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show" id="userNotFound" style="display:none;"
+                role="alert">
+                User Not Found !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="dismissAlert2()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -57,6 +66,26 @@
             </div>
         </div>
     </section>
+    <script>
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message === 'incorrectPass') {
+                document.getElementById('incorrectPass').style.display = 'block';
+
+            }
+            if (message === 'userNotFound') {
+                document.getElementById('userNotFound').style.display = 'block';
+            }
+        }
+        function dismissAlert() {
+            
+            document.getElementById('incorrectPass').style.display = 'none';
+        }
+        function dismissAlert2(){
+            document.getElementById('userNotFound').style.display = 'none';
+        }
+    </script>
 </body>
 
 </html>

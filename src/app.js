@@ -3,7 +3,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 require("./db/mongo");
 const path = require("path");
-const UserCollection = require("./db/mongo");
+const { UserCollection, adminCollection } = require("./db/mongo");
+
 const session=require("express-session")
 
 
@@ -85,11 +86,11 @@ app.post('/SignInData', async (req, res) => {
 
                 res.status(200).render("home", { userData: user });
             } else {
-                res.status(401).redirect('/login?message=incorrectPass');
+                res.status(401).redirect('/?message=incorrectPass');
             }
         } else {
 
-            res.status(404).redirect('/login?message=userNotFound');
+            res.status(404).redirect('/?message=userNotFound');
         }
     } catch (error) {
         console.error("Error:", error);
@@ -117,3 +118,54 @@ app.get("/logout",(req,res)=>{
 
 
 
+// admin login 
+app.post("/adminlogin", async (req, res) => {
+    const { username, password } = req.body;
+    try {
+        const adminExist = await adminCollection.findOne({ username: username });
+        if (adminExist) {
+            if (adminExist.password === password) {
+                const allUserData = await UserCollection.find();
+                res.status(200).render("adminDash", { AllUserData: allUserData });
+            } else {
+                res.status(401).send("Invalid password");
+            }
+        } else {
+            res.status(404).send("Admin user not found");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// Update user data
+app.post("/update/:userId", async (req, res) => {
+    const userId = req.params.userId;
+    const { name, email, dob, gender, password } = req.body;
+    try {
+        await UserCollection.findByIdAndUpdate(userId, { name, email, dob, gender, password });
+        // Fetch updated user data
+        const allUserData = await UserCollection.find();
+        // Render admin dashboard with updated user data
+        res.status(200).render("adminDash", { AllUserData: allUserData });
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// Delete user
+app.post("/delete/:userId", async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        await UserCollection.findByIdAndDelete(userId);
+        // Redirect to admin dashboard after deletion
+        const allUserData = await UserCollection.find();
+         // Render admin dashboard with updated user data
+         res.status(200).render("adminDash", { AllUserData: allUserData });
+        } catch (error) {
+            console.error("Error:", error);
+            res.status(500).send("Internal Server Error");
+        }
+});
